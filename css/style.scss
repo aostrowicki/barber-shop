@@ -32,8 +32,13 @@ p{
     margin-bottom: 3rem;
 }
 
+ul{
+    list-style: none;
+}
+
 a{
     text-decoration: none;  
+    color: unset;
 }
 
 img{
@@ -136,12 +141,16 @@ nav{
 
     .logo {
         display:inline-block;
-        padding: 1em 0;
+        padding: 0.3rem 0;
+        font-weight: 900;
+        font-size: 2em;
+        color:black;
 
         svg{
-            height: 3em;
-            width: 3em;
+            height: 1em;
+            width: 1em;
             vertical-align: middle;
+            fill: black;
         }
     }
 
@@ -154,7 +163,6 @@ nav{
 
     ul {
         margin-bottom:0.5em;
-        list-style: none;
         display:none;
 
         li{
@@ -182,7 +190,6 @@ nav{
 
         .hero-text {
             padding-top: 15vh;
-            width: 60%;
 
             .btn{
                 margin-bottom:4em;
@@ -282,10 +289,48 @@ nav{
     }
 }
 
-.copyright{
+.footer{
     background:black;
     color:white;
+
+    .tabs{
+        padding: 3em 0 1em;
+        display:flex;
+        justify-content: space-evenly;
+
+        p{
+            margin-bottom:1.5em;
+        }
+
+        span{
+            display:block;
+            font-size: 16px;
+            margin-bottom:0.5em;
+            color:rgb(167, 167, 167);
+        }
+
+        li{
+            font-size: 16px;
+            margin-bottom:0.5em;
+            color:rgb(167, 167, 167);
+
+            &:hover{
+                color:white;
+            }
+        }
+    }
+}
+
+.footer{
+    display: none;
+}
+
+.copyright{
+    background:black;
+    color:rgb(61, 61, 61);
     padding: 3em 0;
+    text-align: center;
+    font-size: 15px;
 }
 
 
@@ -359,6 +404,7 @@ nav{
 
             .hero-text{
                 padding-top: 0;
+                width: 60%;
 
                 .btn{
                     margin:0;
@@ -423,10 +469,7 @@ nav{
     #landing{
         .wrapper{
             .hero-text{
-                width: 50%;
-            }
-            .hero-bg{
-                width: 45%;
+                max-width: 450px;
             }
         }
     }
@@ -435,6 +478,10 @@ nav{
         .about-bg{
             width: 45%;
         }
+    }
+
+    .footer{
+        display: block;
     }
 }
 
@@ -461,11 +508,8 @@ nav{
 
     #landing{
         .wrapper{
-            .hero-text{
-                max-width: 400px;
-            }
             .hero-bg{
-                width: 55vw;
+                width: 49.5vw;
             }
         }
     }

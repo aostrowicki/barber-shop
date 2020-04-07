@@ -32,8 +32,13 @@ p {
   margin-bottom: 3rem;
 }
 
+ul {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
+  color: unset;
 }
 
 img {
@@ -141,13 +146,17 @@ nav {
 
 nav .logo {
   display: inline-block;
-  padding: 1em 0;
+  padding: 0.3rem 0;
+  font-weight: 900;
+  font-size: 2em;
+  color: black;
 }
 
 nav .logo svg {
-  height: 3em;
-  width: 3em;
+  height: 1em;
+  width: 1em;
   vertical-align: middle;
+  fill: black;
 }
 
 nav .hamburger {
@@ -159,7 +168,6 @@ nav .hamburger {
 
 nav ul {
   margin-bottom: 0.5em;
-  list-style: none;
   display: none;
 }
 
@@ -189,7 +197,6 @@ nav ul li a {
 
 #landing .wrapper .hero-text {
   padding-top: 15vh;
-  width: 60%;
 }
 
 #landing .wrapper .hero-text .btn {
@@ -290,10 +297,52 @@ nav ul li a {
   vertical-align: text-top;
 }
 
-.copyright {
+.footer {
   background: black;
   color: white;
+}
+
+.footer .tabs {
+  padding: 3em 0 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.footer .tabs p {
+  margin-bottom: 1.5em;
+}
+
+.footer .tabs span {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  color: #a7a7a7;
+}
+
+.footer .tabs li {
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  color: #a7a7a7;
+}
+
+.footer .tabs li:hover {
+  color: white;
+}
+
+.footer {
+  display: none;
+}
+
+.copyright {
+  background: black;
+  color: #3d3d3d;
   padding: 3em 0;
+  text-align: center;
+  font-size: 15px;
 }
 
 @media screen and (min-width: 650px) {
@@ -368,6 +417,7 @@ nav ul li a {
   }
   #landing .wrapper .hero-text {
     padding-top: 0;
+    width: 60%;
   }
   #landing .wrapper .hero-text .btn {
     margin: 0;
@@ -416,13 +466,13 @@ nav ul li a {
 
 @media screen and (min-width: 750px) {
   #landing .wrapper .hero-text {
-    width: 50%;
-  }
-  #landing .wrapper .hero-bg {
-    width: 45%;
+    max-width: 450px;
   }
   #about .about-bg {
     width: 45%;
+  }
+  .footer {
+    display: block;
   }
 }
 
@@ -433,11 +483,8 @@ nav ul li a {
   nav ul li a {
     font-size: 1em;
   }
-  #landing .wrapper .hero-text {
-    max-width: 400px;
-  }
   #landing .wrapper .hero-bg {
-    width: 55vw;
+    width: 49.5vw;
   }
   #about {
     padding-bottom: 10em;

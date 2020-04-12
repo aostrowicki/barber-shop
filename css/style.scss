@@ -128,51 +128,108 @@ img{
 header{
     position: fixed;
     background: white;
-    color:black;
     width:100%;
     z-index:1;
-}
+    top: 0;
 
-nav{
-    display:flex;
-    flex-direction: column;
-    position: relative;
-   
+    nav{
+        display:flex;
+        flex-direction: column;
+        position: relative;
 
-    .logo {
-        display:inline-block;
-        padding: 0.3rem 0;
-        font-weight: 900;
-        font-size: 2em;
-        color:black;
+        .logo {
+            display:inline-block;
+            padding: 0.3rem 0;
+            font-weight: 900;
+            font-size: 2em;
+            color:black;
 
-        svg{
-            height: 1em;
-            width: 1em;
-            vertical-align: middle;
-            fill: black;
+            svg{
+                height: 1em;
+                width: 1em;
+                vertical-align: middle;
+                fill: black;
+            }
+        }
+
+        .hamburger {
+            display: block;
+            position: absolute;
+            right:0em;
+            top: 0em;
+            height: 60px;
+            width: 60px;
+            padding: 15px 0;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            cursor: pointer;
+
+            span{
+                display: block;
+                width: 50%;
+                height: 3px;
+                background: black;
+                transition: all 0.1s ease-in-out;
+            }
+        }
+
+
+        ul {
+            margin-bottom:0.5em;
+            display:none;
+
+            li{
+
+                a{
+                    display:inline-block;
+                    color:white;
+                    font-size: 1.2em;
+                    padding: 1em 0;
+                }
+            }
         }
     }
 
-    .hamburger {
-        display: inline-block;
-        position: absolute;
-        right:1.5em;
-        top: 1em;
-    }
+    &.open{
+        background:black;
 
-    ul {
-        margin-bottom:0.5em;
-        display:none;
+        nav{
 
-        li{
+            .logo {
+                color:white;
 
-            a{
-                display:inline-block;
-                color:black;
-                font-size: 1.2em;
-                padding: 1em 0;
+                svg{
+                    fill:white;
+                }
             }
+
+            .hamburger{
+                justify-content: center;
+        
+                span{
+                    background:white;
+                }
+
+                span:nth-child(1){
+                    position:absolute;
+                    transform: rotate(-45deg);
+                }
+        
+                span:nth-child(2){
+                    opacity:0;
+                }
+        
+                span:nth-child(3){
+                    position:absolute;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        ul{
+            display:block;
         }
     }
 }
@@ -180,6 +237,10 @@ nav{
 /////////////////////////////////////////            LANDING
 
 #landing{
+
+    .scroll{
+        display: none;
+    }
 
     .wrapper{           
         height:100vh;
@@ -207,6 +268,39 @@ nav{
 }
 
 
+/////////////////////////////////////////            CONTACT
+
+#contact{
+
+    .contact-map {
+        margin-top: 60px;
+        height: 40vh;
+        width:100%;
+    }
+
+    .contact-text{
+        padding-bottom: 4em;
+        max-width: 450px;
+
+        h2{
+            text-transform: uppercase;
+            font-weight: 900;
+            margin: 1.5em 0 0.5em;
+        }
+
+        .text-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-row-gap: 0.5em;
+
+            &:last-child{
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+}
+
+
 /////////////////////////////////////////            ABOUT
 
 #about{
@@ -219,6 +313,7 @@ nav{
     padding: 3em 0 2em;
     background:black;
     color:white;
+    position: relative;
 
     .grid-container{
         display:grid;
@@ -250,6 +345,11 @@ nav{
         }
         
     }
+
+    #service{
+        position:absolute;
+        top: -3em;
+    }
 }
 
 /////////////////////////////////////////            GALLERY
@@ -261,7 +361,7 @@ nav{
 /////////////////////////////////////////            FOOTER
 
 #book{
-    padding: 3em 0 8em;
+    padding: 3em 0 6em;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -338,7 +438,7 @@ nav{
 
 
 @media screen and (min-width:650px){
-    nav{
+    header nav{
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -361,6 +461,7 @@ nav{
                     padding: 1em 0;
                     margin: 0 0 0 4vw;                  
                     position: relative;
+                    color:black;
 
                     &::after{
                         display: block;
@@ -390,12 +491,25 @@ nav{
         }
     }
 
+    @keyframes scroll-animation {
+        0% {transform: translateY(0);}
+        80% {transform: translateY(-20%);}
+        100% {transform: translateY(-20%);}
+      }
 
     #landing{
         height:100vh; 
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        .scroll{
+            display: block;
+            position: absolute;
+            bottom:5%;
+            left:50%;   
+            animation: scroll-animation 0.5s infinite alternate;
+        }
 
         .wrapper{
             display: block;
@@ -474,6 +588,68 @@ nav{
         }
     }
 
+    #contact{
+        height:100vh; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .wrapper{
+            display: block;
+            height:auto;
+            width: auto;
+
+            .contact-text{
+                margin-left: 52%;
+                padding: 0;
+
+                h2:first-child{
+                    margin:0;
+                }
+
+                .text-container{
+                    a span{              
+                        position: relative;
+                        display: inline-block;
+        
+                        &::after{
+                            display: block;
+                            content:'';
+                            width: 0;
+                            height: 1px;
+                            position:absolute;
+                            top:50%;
+                            left:50%;
+                            background: black;
+                            transition: all 0.1s ease;
+                            transform:rotate(-10deg);
+                        }
+        
+                        &:hover{
+                            &::after{
+                                width:120%;
+                                left:-10%;
+                            }
+                        }                    
+                    }  
+                    
+                    a:nth-child(even) span::after{
+                        transform:rotate(10deg);
+                    }
+                }
+            }
+
+            .contact-map{
+                position: absolute;
+                left:0;
+                top:0;
+                width: 45vw;
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }
+
     #about{
         .about-bg{
             width: 45%;
@@ -495,7 +671,7 @@ nav{
         font-size: 18px;
     }
 
-    nav{
+    header nav{
         ul{
             li{
                 a{
@@ -538,7 +714,8 @@ nav{
     }
 
     #gallery{
-        padding: 10em 0 6em;
+        margin: 5em 0 6em;
+        padding: 5em;
     }
 }
 

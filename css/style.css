@@ -128,12 +128,12 @@ img {
 header {
   position: fixed;
   background: white;
-  color: black;
   width: 100%;
   z-index: 1;
+  top: 0;
 }
 
-nav {
+header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -144,7 +144,7 @@ nav {
   position: relative;
 }
 
-nav .logo {
+header nav .logo {
   display: inline-block;
   padding: 0.3rem 0;
   font-weight: 900;
@@ -152,30 +152,102 @@ nav .logo {
   color: black;
 }
 
-nav .logo svg {
+header nav .logo svg {
   height: 1em;
   width: 1em;
   vertical-align: middle;
   fill: black;
 }
 
-nav .hamburger {
-  display: inline-block;
+header nav .hamburger {
+  display: block;
   position: absolute;
-  right: 1.5em;
-  top: 1em;
+  right: 0em;
+  top: 0em;
+  height: 60px;
+  width: 60px;
+  padding: 15px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
 }
 
-nav ul {
+header nav .hamburger span {
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: black;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+header nav ul {
   margin-bottom: 0.5em;
   display: none;
 }
 
-nav ul li a {
+header nav ul li a {
   display: inline-block;
-  color: black;
+  color: white;
   font-size: 1.2em;
   padding: 1em 0;
+}
+
+header.open {
+  background: black;
+}
+
+header.open nav .logo {
+  color: white;
+}
+
+header.open nav .logo svg {
+  fill: white;
+}
+
+header.open nav .hamburger {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header.open nav .hamburger span {
+  background: white;
+}
+
+header.open nav .hamburger span:nth-child(1) {
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+header.open nav .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+header.open nav .hamburger span:nth-child(3) {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+header.open ul {
+  display: block;
+}
+
+#landing .scroll {
+  display: none;
 }
 
 #landing .wrapper {
@@ -211,6 +283,36 @@ nav ul li a {
   width: 100%;
 }
 
+#contact .contact-map {
+  margin-top: 60px;
+  height: 40vh;
+  width: 100%;
+}
+
+#contact .contact-text {
+  padding-bottom: 4em;
+  max-width: 450px;
+}
+
+#contact .contact-text h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 1.5em 0 0.5em;
+}
+
+#contact .contact-text .text-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-row-gap: 0.5em;
+}
+
+#contact .contact-text .text-container:last-child {
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
 #about {
   padding: 6em 0 3em;
 }
@@ -219,6 +321,7 @@ nav ul li a {
   padding: 3em 0 2em;
   background: black;
   color: white;
+  position: relative;
 }
 
 #services .grid-container {
@@ -257,12 +360,17 @@ nav ul li a {
   margin-bottom: 1em;
 }
 
+#services #service {
+  position: absolute;
+  top: -3em;
+}
+
 #gallery {
   padding: 7em 0 6em;
 }
 
 #book {
-  padding: 3em 0 8em;
+  padding: 3em 0 6em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -346,7 +454,7 @@ nav ul li a {
 }
 
 @media screen and (min-width: 650px) {
-  nav {
+  header nav {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -358,24 +466,25 @@ nav ul li a {
         -ms-flex-align: center;
             align-items: center;
   }
-  nav .logo {
+  header nav .logo {
     padding: 0;
   }
-  nav .hamburger {
+  header nav .hamburger {
     display: none;
   }
-  nav ul {
+  header nav ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin: 0;
   }
-  nav ul li a {
+  header nav ul li a {
     padding: 1em 0;
     margin: 0 0 0 4vw;
     position: relative;
+    color: black;
   }
-  nav ul li a::after {
+  header nav ul li a::after {
     display: block;
     content: '';
     width: 0;
@@ -389,13 +498,41 @@ nav ul li a {
     -webkit-transform: rotate(-10deg);
             transform: rotate(-10deg);
   }
-  nav ul li a:hover::after {
+  header nav ul li a:hover::after {
     width: 120%;
     left: -10%;
   }
-  nav ul li:nth-child(even) a::after {
+  header nav ul li:nth-child(even) a::after {
     -webkit-transform: rotate(10deg);
             transform: rotate(10deg);
+  }
+  @-webkit-keyframes scroll-animation {
+    0% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    80% {
+      -webkit-transform: translateY(-20%);
+              transform: translateY(-20%);
+    }
+    100% {
+      -webkit-transform: translateY(-20%);
+              transform: translateY(-20%);
+    }
+  }
+  @keyframes scroll-animation {
+    0% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+    }
+    80% {
+      -webkit-transform: translateY(-20%);
+              transform: translateY(-20%);
+    }
+    100% {
+      -webkit-transform: translateY(-20%);
+              transform: translateY(-20%);
+    }
   }
   #landing {
     height: 100vh;
@@ -409,6 +546,14 @@ nav ul li a {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  #landing .scroll {
+    display: block;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    -webkit-animation: scroll-animation 0.5s infinite alternate;
+            animation: scroll-animation 0.5s infinite alternate;
   }
   #landing .wrapper {
     display: block;
@@ -468,6 +613,65 @@ nav ul li a {
   #landing .wrapper .hero-text {
     max-width: 450px;
   }
+  #contact {
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #contact .wrapper {
+    display: block;
+    height: auto;
+    width: auto;
+  }
+  #contact .wrapper .contact-text {
+    margin-left: 52%;
+    padding: 0;
+  }
+  #contact .wrapper .contact-text h2:first-child {
+    margin: 0;
+  }
+  #contact .wrapper .contact-text .text-container a span {
+    position: relative;
+    display: inline-block;
+  }
+  #contact .wrapper .contact-text .text-container a span::after {
+    display: block;
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: black;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  #contact .wrapper .contact-text .text-container a span:hover::after {
+    width: 120%;
+    left: -10%;
+  }
+  #contact .wrapper .contact-text .text-container a:nth-child(even) span::after {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  #contact .wrapper .contact-map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45vw;
+    height: 100%;
+    margin: 0;
+  }
   #about .about-bg {
     width: 45%;
   }
@@ -480,7 +684,7 @@ nav ul li a {
   body {
     font-size: 18px;
   }
-  nav ul li a {
+  header nav ul li a {
     font-size: 1em;
   }
   #landing .wrapper .hero-bg {
@@ -509,7 +713,8 @@ nav ul li a {
             justify-content: space-between;
   }
   #gallery {
-    padding: 10em 0 6em;
+    margin: 5em 0 6em;
+    padding: 5em;
   }
 }
 

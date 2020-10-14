@@ -637,6 +637,8 @@ header.open ul {
             filter: grayscale(100%);
     -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
+    min-height: 100%;
+    max-width: 100%;
   }
   #gallery .grid-item img:hover {
     -webkit-filter: grayscale(0);

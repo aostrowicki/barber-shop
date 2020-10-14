@@ -33,18 +33,24 @@ options = {
 }
 
 const landing = document.querySelector('#landing');
+const contact = document.querySelector('#contact');
 const scrollA = document.querySelector('.scroll');
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             header.classList.remove('shadow');
-            scrollA.classList.remove('hide');
+            if (landing)
+                scrollA.classList.remove('hide');
         }
         else {
             header.classList.add('shadow');
-            scrollA.classList.add('hide');
+            if (landing)
+                scrollA.classList.add('hide');
         }
     })
 }, options);
 
-observer.observe(landing);
+if (landing)
+    observer.observe(landing);
+else
+    observer.observe(contact);
